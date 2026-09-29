@@ -87,6 +87,8 @@
 "settings.about.copyright" = "© lingyired";
 "settings.battery.title" = "عرض البطارية";
 "settings.battery.showPercentage" = "إظهار نسبة البطارية";
+"settings.battery.showPercentageInConnectionSlot" = "إظهار نسبة البطارية في موضع الاتصال";
+"settings.battery.showPercentageInConnectionSlotDescription" = "يستبدل رمز Wi-Fi أو الاتصال، وهو مستقل عن مؤشر البطارية العلوي.";
 "settings.battery.showChargingIndicator" = "إظهار رمز أثناء الشحن أو الاتصال بالطاقة";
 "settings.battery.chargingDescription" = "عند التفعيل، تتحول النسبة إلى رمز برق أو قابس أثناء الشحن أو الاتصال بالطاقة.";
 "settings.battery.chargingEffect" = "تأثير الشحن";

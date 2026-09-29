@@ -104,6 +104,8 @@
 "settings.about.copyright" = "© lingyired";
 "settings.battery.title" = "電池顯示";
 "settings.battery.showPercentage" = "顯示電量數字";
+"settings.battery.showPercentageInConnectionSlot" = "在連線位置顯示電量數字";
+"settings.battery.showPercentageInConnectionSlotDescription" = "取代 Wi-Fi 或連線圖示；此選項可與頂端電池指示器分別開啟。";
 "settings.battery.showChargingIndicator" = "充電/連接電源時顯示指示圖示";
 "settings.battery.chargingDescription" = "開啟後，正在充電或已連接電源時，電量數字會替換為閃電或插頭圖示；關閉則繼續顯示數字。";
 "settings.battery.chargingEffect" = "充電效果";

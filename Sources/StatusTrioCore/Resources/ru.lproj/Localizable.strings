@@ -104,6 +104,8 @@
 "settings.about.copyright" = "© lingyired";
 "settings.battery.title" = "Отображение батареи";
 "settings.battery.showPercentage" = "Показывать процент заряда";
+"settings.battery.showPercentageInConnectionSlot" = "Показывать процент заряда на месте подключения";
+"settings.battery.showPercentageInConnectionSlotDescription" = "Заменяет значок Wi-Fi или подключения. Эта настройка не зависит от верхнего индикатора батареи.";
 "settings.battery.showChargingIndicator" = "Показывать значок при зарядке или питании от сети";
 "settings.battery.chargingDescription" = "Если включено, процент заменяется молнией или вилкой во время зарядки или при питании от сети.";
 "settings.battery.chargingEffect" = "Эффект зарядки";

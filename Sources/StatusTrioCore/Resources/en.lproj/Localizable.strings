@@ -104,6 +104,8 @@
 "settings.about.copyright" = "© lingyired";
 "settings.battery.title" = "Battery Display";
 "settings.battery.showPercentage" = "Show battery percentage";
+"settings.battery.showPercentageInConnectionSlot" = "Show battery percentage in the connection position";
+"settings.battery.showPercentageInConnectionSlotDescription" = "Replaces the Wi-Fi or connection symbol. This is independent from the top battery indicator.";
 "settings.battery.showChargingIndicator" = "Show an indicator while charging or connected to power";
 "settings.battery.chargingDescription" = "When enabled, the percentage becomes a bolt or plug while charging or connected to power.";
 "settings.battery.chargingEffect" = "Charging effect";

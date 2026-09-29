@@ -104,6 +104,8 @@
 "settings.about.copyright" = "© lingyired";
 "settings.battery.title" = "Batterieanzeige";
 "settings.battery.showPercentage" = "Batterieprozentsatz anzeigen";
+"settings.battery.showPercentageInConnectionSlot" = "Batterieprozentsatz an der Verbindungsposition anzeigen";
+"settings.battery.showPercentageInConnectionSlotDescription" = "Ersetzt das WLAN- oder Verbindungssymbol und ist unabhängig von der oberen Batterieanzeige.";
 "settings.battery.showChargingIndicator" = "Symbol beim Laden oder Netzbetrieb anzeigen";
 "settings.battery.chargingDescription" = "Wenn aktiviert, wird der Prozentsatz beim Laden oder Netzbetrieb durch ein Blitz- oder Steckersymbol ersetzt.";
 "settings.battery.chargingEffect" = "Ladeeffekt";

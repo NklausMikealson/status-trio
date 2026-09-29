@@ -31,6 +31,18 @@ struct BatterySectionView: View {
 
             SettingsDivider()
 
+            SettingsToggleRow(
+                symbol: "number",
+                tint: .teal,
+                title: localization.string(.settingsBatteryShowPercentageInConnectionSlot),
+                subtitle: localization.string(
+                    .settingsBatteryShowPercentageInConnectionSlotDescription
+                ),
+                isOn: $store.showsBatteryPercentageInConnectionSlot
+            )
+
+            SettingsDivider()
+
             // Charging Bolt Switch
             SettingsToggleRow(
                 symbol: "bolt.fill",

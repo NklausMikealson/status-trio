@@ -27,6 +27,7 @@ final class SettingsStore: ObservableObject {
     static let showsWiFiIconForHotspotDefaultsKey = "showsWiFiIconForHotspot"
     static let showsWiFiIconForTemporaryConnectionDefaultsKey = "showsWiFiIconForTemporaryConnection"
     static let showsWiFiIconForInternetSharingDefaultsKey = "showsWiFiIconForInternetSharing"
+    static let showsBatteryPercentageInConnectionSlotDefaultsKey = "showsBatteryPercentageInConnectionSlot"
     static let replacesNetworkIconWithBluetoothAudioDefaultsKey = "replacesNetworkIconWithBluetoothAudio"
     static let usesBluetoothAudioVolumeColorDefaultsKey = "usesBluetoothAudioVolumeColor"
     static let prioritizesNetworkErrorsOverBluetoothAudioDefaultsKey = "prioritizesNetworkErrorsOverBluetoothAudio"
@@ -234,6 +235,15 @@ final class SettingsStore: ObservableObject {
             defaults.set(
                 showsWiFiIconForInternetSharing,
                 forKey: Self.showsWiFiIconForInternetSharingDefaultsKey
+            )
+        }
+    }
+
+    @Published var showsBatteryPercentageInConnectionSlot: Bool {
+        didSet {
+            defaults.set(
+                showsBatteryPercentageInConnectionSlot,
+                forKey: Self.showsBatteryPercentageInConnectionSlotDefaultsKey
             )
         }
     }
@@ -650,6 +660,7 @@ final class SettingsStore: ObservableObject {
             showsWiFiIconForHotspot: showsWiFiIconForHotspot,
             showsWiFiIconForTemporaryConnection: showsWiFiIconForTemporaryConnection,
             showsWiFiIconForInternetSharing: showsWiFiIconForInternetSharing,
+            showsBatteryPercentageInConnectionSlot: showsBatteryPercentageInConnectionSlot,
             wifiScale: wifiSymbolScale
         )
     }
@@ -780,6 +791,9 @@ final class SettingsStore: ObservableObject {
         ) as? Bool ?? false
         self.showsWiFiIconForInternetSharing = defaults.object(
             forKey: Self.showsWiFiIconForInternetSharingDefaultsKey
+        ) as? Bool ?? false
+        self.showsBatteryPercentageInConnectionSlot = defaults.object(
+            forKey: Self.showsBatteryPercentageInConnectionSlotDefaultsKey
         ) as? Bool ?? false
         self.replacesNetworkIconWithBluetoothAudio = defaults.object(
             forKey: Self.replacesNetworkIconWithBluetoothAudioDefaultsKey

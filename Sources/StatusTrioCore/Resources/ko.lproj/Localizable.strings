@@ -104,6 +104,8 @@
 "settings.about.copyright" = "© lingyired";
 "settings.battery.title" = "배터리 표시";
 "settings.battery.showPercentage" = "배터리 잔량 표시";
+"settings.battery.showPercentageInConnectionSlot" = "연결 위치에 배터리 잔량 표시";
+"settings.battery.showPercentageInConnectionSlotDescription" = "Wi-Fi 또는 연결 기호를 대체합니다. 상단 배터리 표시와 별도로 설정할 수 있습니다.";
 "settings.battery.showChargingIndicator" = "충전 또는 전원 연결 시 아이콘 표시";
 "settings.battery.chargingDescription" = "활성화하면 충전 중이거나 전원에 연결되었을 때 잔량이 번개 또는 플러그로 바뀝니다. 비활성화하면 잔량을 계속 표시합니다.";
 "settings.battery.chargingEffect" = "충전 효과";

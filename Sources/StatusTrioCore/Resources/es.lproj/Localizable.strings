@@ -104,6 +104,8 @@
 "settings.about.copyright" = "© lingyired";
 "settings.battery.title" = "Visualización de la batería";
 "settings.battery.showPercentage" = "Mostrar porcentaje de batería";
+"settings.battery.showPercentageInConnectionSlot" = "Mostrar el porcentaje de batería en la posición de conexión";
+"settings.battery.showPercentageInConnectionSlotDescription" = "Sustituye el símbolo de Wi-Fi o conexión. Es independiente del indicador de batería superior.";
 "settings.battery.showChargingIndicator" = "Mostrar un indicador al cargar o conectar a la corriente";
 "settings.battery.chargingDescription" = "Al activarlo, el porcentaje se convierte en un rayo o un enchufe mientras se carga o está conectado a la corriente.";
 "settings.battery.chargingEffect" = "Efecto de carga";
