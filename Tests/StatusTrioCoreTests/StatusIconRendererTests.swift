@@ -1319,6 +1319,123 @@ final class StatusIconRendererTests: XCTestCase {
         XCTAssertNotEqual(known.bytes, unknown.bytes)
     }
 
+    /// The connection-slot setting replaces whatever the slot would draw — the
+    /// Wi-Fi glyph here — with the battery percentage, and it does so without
+    /// touching the top battery indicator, which the same snapshot draws too.
+    func testBatteryPercentageInConnectionSlotReplacesTheNetworkGlyph() throws {
+        let snapshot = StatusSnapshot(
+            battery: BatteryStatus(
+                rawPercentage: 79,
+                isPresent: true,
+                isCharging: false,
+                isLowPowerMode: false,
+                isConnectedToPower: false
+            ),
+            wifi: WiFiStatus(state: .connected, rssi: -55),
+            connection: .wifi,
+            volume: VolumeStatus(scalar: 0.5, isMuted: false, deviceName: nil)
+        )
+
+        let standard = try renderPixels(snapshot)
+        let slotPercentage = try renderPixels(
+            snapshot,
+            connectionOptions: ConnectionIconOptions(
+                showsBatteryPercentageInConnectionSlot: true
+            )
+        )
+
+        XCTAssertNotEqual(standard.bytes, slotPercentage.bytes)
+    }
+
+    /// The slot keeps drawing the connection glyph when the machine reports no
+    /// battery at all, so a desktop Mac cannot end up with an empty middle.
+    func testBatteryPercentageInConnectionSlotFallsBackWhenBatteryIsAbsent() throws {
+        let snapshot = StatusSnapshot(
+            battery: BatteryStatus(
+                rawPercentage: nil,
+                isPresent: false,
+                isCharging: false,
+                isLowPowerMode: false,
+                isConnectedToPower: false
+            ),
+            wifi: WiFiStatus(state: .connected, rssi: -55),
+            connection: .wifi,
+            volume: VolumeStatus(scalar: 0.5, isMuted: false, deviceName: nil)
+        )
+
+        let standard = try renderPixels(snapshot)
+        let slotPercentage = try renderPixels(
+            snapshot,
+            connectionOptions: ConnectionIconOptions(
+                showsBatteryPercentageInConnectionSlot: true
+            )
+        )
+
+        XCTAssertEqual(standard.bytes, slotPercentage.bytes)
+    }
+
+    /// The slot percentage wins over a picked Bluetooth symbol, which is the
+    /// ordering the settings subtitle promises ("replaces the Wi-Fi or
+    /// connection symbol", independent of the top indicator).
+    func testBatteryPercentageInConnectionSlotWinsOverPickedNetworkSymbol() throws {
+        let snapshot = StatusSnapshot(
+            battery: BatteryStatus(
+                rawPercentage: 79,
+                isPresent: true,
+                isCharging: false,
+                isLowPowerMode: false,
+                isConnectedToPower: false
+            ),
+            wifi: WiFiStatus(state: .connected, rssi: -55),
+            connection: .wifi,
+            volume: VolumeStatus(scalar: 0.5, isMuted: false, deviceName: nil)
+        )
+        let pickedSymbol = BluetoothAudioIconOptions(
+            replacesNetworkIcon: true,
+            networkIconSymbolOverride: "keyboard"
+        )
+
+        let symbolOnly = try PixelBuffer(
+            image: try XCTUnwrap(StatusIconRenderer.render(
+                snapshot: snapshot,
+                size: 20,
+                scale: 8,
+                foreground: CGColor(gray: 1, alpha: 1),
+                bluetoothAudioOptions: pickedSymbol
+            ))
+        )
+        let withSlotPercentage = try PixelBuffer(
+            image: try XCTUnwrap(StatusIconRenderer.render(
+                snapshot: snapshot,
+                size: 20,
+                scale: 8,
+                foreground: CGColor(gray: 1, alpha: 1),
+                connectionOptions: ConnectionIconOptions(
+                    showsBatteryPercentageInConnectionSlot: true
+                ),
+                bluetoothAudioOptions: pickedSymbol
+            ))
+        )
+
+        XCTAssertNotEqual(symbolOnly.bytes, withSlotPercentage.bytes)
+        // The picked symbol is Bluetooth blue; the slot draws in the
+        // foreground, so its blue must be gone.
+        XCTAssertTrue(symbolOnly.containsColor(
+            red: 77.0 / 255.0,
+            green: 163.0 / 255.0,
+            blue: 1,
+            tolerance: 0.08,
+            minimumAlpha: 0.9
+        ))
+        XCTAssertFalse(withSlotPercentage.containsColor(
+            red: 77.0 / 255.0,
+            green: 163.0 / 255.0,
+            blue: 1,
+            tolerance: 0.08,
+            minimumAlpha: 0.9
+        ))
+    }
+
     func testBluetoothOutputUsesDarkerBlueForLightMenuBar() throws {
         let snapshot = bluetoothAudioSnapshot(volumeScalar: 0.5)
         let bluetooth = try PixelBuffer(
